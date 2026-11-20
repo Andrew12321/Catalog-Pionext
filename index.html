@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalog PioNext — imprimante 3D și rășini dentare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --ink:#14181f; --muted:#5c6573; --line:#e3e6eb;
+    --accent:#0f6f8f; --accent-soft:#e3f1f5; --price:#0b3d4f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Manrope,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,#0b3d4f 0%,#0f6f8f 100%);color:#fff;padding:44px 0 36px}
+  header .brand{font-size:13px;letter-spacing:.18em;text-transform:uppercase;opacity:.8;font-weight:600}
+  header .logo{display:inline-block;background:#fff;border-radius:14px;padding:8px 14px;margin-bottom:18px;box-shadow:0 6px 20px rgba(0,0,0,.18)}
+  header .logo img{display:block;height:46px;width:auto}
+  header h1{font-size:clamp(28px,5vw,44px);font-weight:800;margin:8px 0 10px;letter-spacing:-.01em}
+  header p{max-width:620px;opacity:.88;font-size:16px}
+  .stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+  .stats div{font-size:13px;opacity:.85}
+  .stats b{display:block;font-size:24px;font-weight:800;opacity:1}
+  nav{position:sticky;top:0;z-index:5;background:rgba(245,246,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;gap:8px;overflow-x:auto;padding-top:12px;padding-bottom:12px;scrollbar-width:none}
+  nav button{flex:none;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 14px Manrope,sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer}
+  nav button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  section{padding:34px 0 8px}
+  section h2{font-size:22px;font-weight:800;margin-bottom:4px}
+  section .lead{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+  .grid.big{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+  .pic{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#ffffff 0%,#eef1f4 75%)}
+  .pic svg{width:62%;height:auto}
+  .pic img{width:100%;height:100%;object-fit:cover}
+  .pic.photo{background:#fff}
+  .body{padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .tag{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 8px;border-radius:6px}
+  .card h3{font-size:18px;font-weight:800;line-height:1.2}
+  .desc{font-size:14px;color:var(--muted)}
+  ul.spec{list-style:none;font-size:13.5px;display:grid;gap:4px;margin-top:2px}
+  ul.spec li{padding-left:16px;position:relative}
+  ul.spec li:before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .meta{display:flex;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .meta span{border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .shade{display:inline-flex;align-items:center;gap:6px}
+  .shade i{width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.15);display:inline-block}
+  .foot{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;align-items:baseline}
+  .price{font-size:22px;font-weight:800;color:var(--price)}
+  .price small{font-size:13px;font-weight:700;margin-left:3px}
+  .stock{font-size:12px;font-weight:700;color:#1f7a4a}
+  footer{padding:40px 0 50px;color:var(--muted);font-size:13px}
+  .hidden{display:none}
+  .sub{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 6px}
+  .sub button{border:1px solid var(--line);background:#fff;color:var(--muted);font:600 13px Manrope,sans-serif;padding:6px 12px;border-radius:8px;cursor:pointer}
+  .sub button.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+  .group{padding-top:22px}
+  .group h3.gh{font-size:17px;font-weight:800;margin-bottom:2px}
+  .group p.gl{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="logo"><img src="logo.jpg" alt="PioNext"></div>
+    <div class="brand">PioCreat · PioNext</div>
+    <h1>Imprimante 3D și rășini dentare</h1>
+    <p>Imprimante 3D PioNext pentru clinici, laboratoare dentare, plus rășini pentru orice lucrare: modele, ghiduri chirurgicale, provizorii, coroane, gutiere. Disponibile în stoc în Moldova.</p>
+  </div>
+</header>
+
+<nav><div class="wrap" id="chips"></div></nav>
+
+<main class="wrap" id="main"></main>
+
+<footer class="wrap">
+  Prețurile sunt în lei moldovenești (MDL). Imaginile sunt ilustrative.
+</footer>
+
+<script>
+const PRINTER_SVG = (accent) => `
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="100" cy="184" rx="70" ry="7" fill="#000" opacity=".08"/>
+  <rect x="40" y="128" width="120" height="52" rx="10" fill="#2a2f37"/>
+  <rect x="52" y="140" width="40" height="22" rx="4" fill="#0f1216"/>
+  <rect x="55" y="143" width="34" height="16" rx="2" fill="${accent}" opacity=".9"/>
+  <circle cx="140" cy="154" r="5" fill="#4b5563"/>
+  <path d="M48 128 L48 40 Q48 24 64 24 L136 24 Q152 24 152 40 L152 128 Z" fill="${accent}" opacity=".55"/>
+  <path d="M48 128 L48 40 Q48 24 64 24 L136 24 Q152 24 152 40 L152 128 Z" fill="none" stroke="#2a2f37" stroke-width="3"/>
+  <rect x="96" y="32" width="8" height="96" fill="#9aa3ad"/>
+  <rect x="66" y="64" width="68" height="10" rx="2" fill="#c9ced4"/>
+  <rect x="70" y="112" width="60" height="14" rx="2" fill="#b98a3e" opacity=".7"/>
+  <path d="M60 32 L72 32 L72 120 L60 120 Z" fill="#fff" opacity=".25"/>
+</svg>`;
+
+const BOTTLE_SVG = (fill, clear) => `
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="100" cy="186" rx="52" ry="6" fill="#000" opacity=".08"/>
+  <rect x="78" y="14" width="44" height="24" rx="5" fill="#1f242b"/>
+  <rect x="84" y="38" width="32" height="10" fill="#2f353d"/>
+  <path d="M58 64 Q58 48 76 48 L124 48 Q142 48 142 64 L142 176 Q142 184 134 184 L66 184 Q58 184 58 176 Z" fill="#f2f4f6" stroke="#cfd5db" stroke-width="2"/>
+  <path d="M60 92 L140 92 L140 176 Q140 182 134 182 L66 182 Q60 182 60 176 Z" fill="${fill}" opacity="${clear ? .45 : .95}"/>
+  <rect x="66" y="104" width="68" height="46" rx="4" fill="#fff" opacity=".92"/>
+  <rect x="74" y="114" width="40" height="6" rx="2" fill="#0f6f8f"/>
+  <rect x="74" y="126" width="52" height="4" rx="2" fill="#aab2bb"/>
+  <rect x="74" y="135" width="30" height="4" rx="2" fill="#aab2bb"/>
+  <path d="M66 58 L74 58 L74 176 L66 176 Z" fill="#fff" opacity=".5"/>
+</svg>`;
+
+// Date din lista de prețuri PioCreat Moldova (coloana "ПРОДАЖА MD")
+const CATS = [
+  {id:"printers", name:"Imprimante 3D", lead:"Imprimante dentare PioNext"},
+  {id:"post", name:"Post-procesare", lead:"Aparate pentru spălarea și polimerizarea pieselor imprimate"},
+  {id:"models", name:"Modele", lead:"Rășini pentru modele de lucru, ortodontice și bonturi detașabile"},
+  {id:"guides", name:"Ghiduri chirurgicale", lead:"Rășină transparentă pentru ghiduri de implantare"},
+  {id:"gum", name:"Gingie", lead:"Rășină pentru măști gingivale"},
+  {id:"tryin", name:"Probă (Try-in)", lead:"Rășină pentru machete de probă"},
+  {id:"temp", name:"Provizorii", lead:"Rășini pentru restaurări provizorii"},
+  {id:"cb", name:"Coroane și punți", lead:"Rășini pentru coroane și punți"},
+  {id:"ceramic", name:"Ceramic 50%", lead:"Rășini cu 50% umplutură ceramică, 500 g"},
+  {id:"splint", name:"Gutiere", lead:"Rășini pentru gutiere și atele ocluzale, 500 g"},
+];
+
+const ITEMS = [
+  {cat:"printers", name:"PioNext Mini", code:"1003040302", img:"img/mini.jpg", price:50000, printer:true, color:"#3fa7c4",
+   desc:"Imprimantă dentară compactă, tip „valiză”, cu printare și polimerizare într-un singur aparat — pentru lucru direct în cabinet.",
+   spec:["Rezoluție 9K, precizie XY 18 µm","Polimerizare integrată","Coroană imprimată în circa 10 minute","Dimensiuni circa 200 × 170 × 241 mm"]},
+  {cat:"printers", name:"PioNext Ultra", code:"1003040300", img:"img/ultra.jpg", price:60000, printer:true, color:"#0f6f8f",
+   desc:"Imprimantă dentară pentru laboratoare și clinici cu volum mare de lucru, construită pentru stabilitate și rezultate constante la imprimarea în serie.",
+   spec:["Pentru producție în loturi","Platformă de imprimare mare","Software: PioNext Box / Piocreat Box"]},
+
+  {cat:"post", name:"Cuptor UV-02", code:"", price:null, printer:true, img:"img/uv02.jpg",
+   desc:"Cuptor de polimerizare UV pentru piesele dentare imprimate 3D, cu polimerizare uniformă din toate părțile.",
+   spec:["Lungimi de undă 365 / 385 / 405 nm","Polimerizare în cel mult 5 minute","Ecran tactil"]},
+  {cat:"post", name:"Baie cu ultrasunete CD-X3", code:"", price:null, printer:true, img:"img/cdx3.jpg",
+   desc:"Aparat cu ultrasunete pentru spălarea pieselor imprimate 3D: curăță toată suprafața fără să deterioreze detaliile modelelor.",
+   spec:["Curățare cu ultrasunete, cu încălzire","Moduri: Degas, Normal, Pulse, Auto","Cuvă din inox cu capac"]},
+
+  {cat:"models", name:"Ortho 2.0", code:"3302050026", img:"img/ortho2.jpg", price:800, size:"1 kg", shade:"Maro-gălbui", color:"#b8874a",
+   desc:"Rășină pentru modele ortodontice și modele de studiu."},
+  {cat:"models", name:"Water Washable Model", code:"3302050041", price:1800, size:"1 kg", shade:"Grâu închis", color:"#c49a5e",
+   desc:"Rășină pentru modele, lavabilă cu apă — fără alcool izopropilic la spălare."},
+  {cat:"models", name:"Removable Die", code:"3302050079", img:"img/die.jpg", price:1500, size:"1 kg", shade:"Bej", color:"#e0c9a0",
+   desc:"Rășină pentru modele cu bonturi detașabile."},
+
+  {cat:"guides", name:"Surgical Guide Pro", code:"3302120017", img:"img/guide.jpg", price:5000, size:"1 kg", shade:"Transparent", color:"#9fd0de", clear:true,
+   desc:"Rășină transparentă pentru ghiduri chirurgicale de implantare."},
+
+  {cat:"gum", name:"Gingival", code:"3302050042", img:"img/gingival.jpg", price:2500, size:"1 kg", shade:"Roz gingival", color:"#d96f80",
+   desc:"Rășină pentru măști gingivale pe modele."},
+
+  {cat:"tryin", name:"Try-in", code:"3302050077", img:"img/tryin.jpg", price:2000, size:"1 kg", shade:"A2", color:"#ede1c6",
+   desc:"Rășină pentru machete de probă în cavitatea bucală."},
+
+  {cat:"temp", name:"Temp A1", code:"3302150007", img:"img/temp.jpg", price:3000, size:"1 kg", shade:"A1", color:"#f3ead8",
+   desc:"Rășină pentru coroane și punți provizorii, nuanța A1."},
+  {cat:"temp", name:"Temp A2", code:"3302150003", img:"img/temp.jpg", price:3000, size:"1 kg", shade:"A2", color:"#ecdcbc",
+   desc:"Rășină pentru coroane și punți provizorii, nuanța A2."},
+
+  {cat:"cb", name:"Crown & Bridge A1", code:"3302050060", img:"img/cb.jpg", price:7000, size:"1 kg", shade:"A1", color:"#f3ead8",
+   desc:"Rășină pentru coroane și punți, nuanța A1."},
+  {cat:"cb", name:"Crown & Bridge A2", code:"3302050059", img:"img/cb.jpg", price:7000, size:"1 kg", shade:"A2", color:"#ecdcbc",
+   desc:"Rășină pentru coroane și punți, nuanța A2."},
+
+  {cat:"ceramic", name:"Ceramic 50% A1", code:"3302050071", img:"img/ceramic.jpg", price:12000, size:"500 g", shade:"A1", color:"#f3ead8",
+   desc:"Rășină cu 50% umplutură ceramică pentru restaurări estetice, nuanța A1."},
+  {cat:"ceramic", name:"Ceramic 50% A2", code:"3302050067", img:"img/ceramic.jpg", price:12000, size:"500 g", shade:"A2", color:"#ecdcbc",
+   desc:"Rășină cu 50% umplutură ceramică pentru restaurări estetice, nuanța A2."},
+  {cat:"ceramic", name:"Ceramic 50% B1", code:"3302050064", img:"img/ceramic.jpg", price:12000, size:"500 g", shade:"B1", color:"#f6f0e4",
+   desc:"Rășină cu 50% umplutură ceramică pentru restaurări estetice, nuanța B1."},
+
+  {cat:"splint", name:"Splint Flex", code:"3302050070", img:"img/splint-flex.jpg", price:2800, size:"500 g", shade:"Transparent", color:"#a9cfe0", clear:true,
+   desc:"Rășină flexibilă pentru gutiere — confortabilă la purtare."},
+  {cat:"splint", name:"Splint Rigid", code:"3302050070", img:"img/splint-rigid.jpg", price:2800, size:"500 g", shade:"Transparent", color:"#b9d6e3", clear:true,
+   desc:"Rășină rigidă pentru gutiere și atele ocluzale."},
+];
+
+const fmt = n => n.toLocaleString("ro-RO").replace(/ |\s/g," ");
+
+function card(it){
+  const pic = it.img ? `<img src="${it.img}" alt="${it.name}">`
+            : (it.printer ? PRINTER_SVG(it.color) : BOTTLE_SVG(it.color, it.clear));
+  const meta = it.printer ? (it.code ? `<span>Cod ${it.code}</span>` : "")
+    : `<span>${it.size}</span><span class="shade"><i style="background:${it.color}"></i>${it.shade}</span><span>Cod ${it.code}</span>`;
+  const spec = it.spec ? `<ul class="spec">${it.spec.map(s=>`<li>${s}</li>`).join("")}</ul>` : "";
+  return `<article class="card">
+    <div class="pic${it.img?' photo':''}">${pic}</div>
+    <div class="body">
+      <span class="tag">${CATS.find(c=>c.id===it.cat).name}</span>
+      <h3>${it.name}</h3>
+      <p class="desc">${it.desc}</p>
+      ${spec}
+      <div class="meta">${meta}</div>
+      <div class="foot">${it.price ? `<span class="price">${fmt(it.price)}<small>MDL</small></span><span class="stock">● În stoc</span>` : `<span class="price" style="font-size:17px">Preț la cerere</span>`}</div>
+    </div>
+  </article>`;
+}
+
+const SECTIONS = [
+  {id:"printers", name:"Imprimante 3D", lead:"Imprimante dentare PioNext pentru cabinet sau laborator"},
+  {id:"post", name:"Post-procesare", lead:"Aparate pentru spălarea și polimerizarea pieselor imprimate"},
+  {id:"resins", name:"Rășini", lead:"Rășini dentare PioNext, grupate după tipul lucrării"},
+];
+const RGROUPS = [
+  {id:"g-models", name:"Modele", lead:"Modele de lucru, ortodontice, cu bonturi detașabile, plus măști gingivale", cats:["models","gum"]},
+  {id:"g-temp", name:"Provizorii și probă", lead:"Coroane, punți provizorii, machete de probă", cats:["temp","tryin"]},
+  {id:"g-final", name:"Coroane și punți", lead:"Restaurări estetice, inclusiv rășini cu 50% ceramică", cats:["cb","ceramic"]},
+  {id:"g-clear", name:"Ghiduri și gutiere", lead:"Rășini transparente: ghiduri chirurgicale, gutiere, atele ocluzale", cats:["guides","splint"]},
+];
+
+const main = document.getElementById("main");
+main.innerHTML = SECTIONS.map(s=>{
+  let inner;
+  if(s.id==="resins"){
+    const sub = `<div class="sub" id="sub">${[{id:"all",name:"Toate"},...RGROUPS].map((g,i)=>`<button data-g="${g.id}" class="${i===0?"on":""}">${g.name}</button>`).join("")}</div>`;
+    inner = sub + RGROUPS.map(g=>`<div class="group" data-g="${g.id}">
+      <h3 class="gh">${g.name}</h3><p class="gl">${g.lead}</p>
+      <div class="grid">${ITEMS.filter(i=>g.cats.includes(i.cat)).map(card).join("")}</div>
+    </div>`).join("");
+  } else {
+    inner = `<div class="grid big">${ITEMS.filter(i=>i.cat===s.id).map(card).join("")}</div>`;
+  }
+  return `<section data-sec="${s.id}" id="${s.id}" class="${s.id==="printers"?"":"hidden"}">
+    <h2>${s.name}</h2><p class="lead">${s.lead}</p>${inner}
+  </section>`;
+}).join("");
+
+
+const chips = document.getElementById("chips");
+chips.innerHTML = SECTIONS.map((s,i)=>`<button data-id="${s.id}" class="${i===0?"on":""}">${s.name}</button>`).join("");
+chips.addEventListener("click",e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  chips.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));
+  document.querySelectorAll("section[data-sec]").forEach(s=>s.classList.toggle("hidden", s.dataset.sec!==b.dataset.id));
+  window.scrollTo({top:document.querySelector("nav").offsetTop,behavior:"smooth"});
+});
+const subEl = document.getElementById("sub");
+subEl.addEventListener("click",e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  subEl.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b));
+  const g = b.dataset.g;
+  document.querySelectorAll(".group").forEach(d=>d.classList.toggle("hidden", g!=="all" && d.dataset.g!==g));
+});
+</script>
+</body>
+</html>
